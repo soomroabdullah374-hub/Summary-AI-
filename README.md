@@ -4,6 +4,8 @@ A Claude.ai-styled studio that summarizes pasted text or uploaded documents (PDF
 
 It is built from the spec in this folder: [PRD.md](PRD.md), [TRD.md](TRD.md), [Design.md](Design.md), [Agent.md](Agent.md) and [Appflow.md](Appflow.md).
 
+**Live app:** https://summary-ai-black.vercel.app
+
 ## Run it
 
 ```bash
@@ -55,7 +57,16 @@ History is stored in the Supabase project **summary** (ref `scxmjhftopjldsyhgrap
 
 ## Deploying to Vercel
 
-Import this folder as a project. Set `GROK_API_KEY` in its environment variables, plus the Supabase variables if you use them, and deploy.
+The live app is the Vercel project `summary-ai`. It already has `GROK_API_KEY` (stored as a secret) and both Supabase variables. To redeploy after a change, run this from the project folder:
+
+```bash
+npx vercel --prod
+```
+
+Pushing to GitHub doesn't redeploy yet, because the Vercel account isn't linked to the GitHub account. To turn on deploy-on-push:
+
+1. In Vercel, go to **Account Settings → Authentication** and connect the GitHub account `soomroabdullah374-hub`.
+2. Open the `summary-ai` project, go to **Settings → Git**, and connect this repository.
 
 ## Known limits
 
