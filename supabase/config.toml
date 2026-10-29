@@ -1,0 +1,14 @@
+# supabase/config.toml
+project_id = "summary"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "storage", "graphql_public"]
+
+[db]
+port = 54322
+major_version = 17
+
+[functions.summarize]
+verify_jwt = false

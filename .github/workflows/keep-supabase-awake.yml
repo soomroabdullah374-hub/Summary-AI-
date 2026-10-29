@@ -1,0 +1,23 @@
+# Supabase pauses free projects after 7 days without activity, so this queries the database every
+# 15 minutes. GitHub can delay scheduled runs when it is busy, and it switches schedules off in a
+# public repo after 60 days without commits. A failed run means the project is paused or
+# unreachable: restore it from the Supabase dashboard.
+name: Keep Supabase awake
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Query the summaries table
+        # The publishable key is public by design (it also ships in the app's JavaScript); RLS
+        # returns no rows without a session id, which is all a ping needs.
+        run: >
+          curl --fail --silent --show-error --max-time 30
+          "https://scxmjhftopjldsyhgrap.supabase.co/rest/v1/summaries?select=id&limit=1"
+          -H "apikey: sb_publishable_COVodXfi_WaWP86A0QNe7A_vh3W8BzT"

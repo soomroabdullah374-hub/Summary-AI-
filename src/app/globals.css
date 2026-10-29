@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+/* Design.md §2 tokens. accent-ink is a darker terracotta for small accent text so it passes 4.5:1. */
+:root {
+  --bg-primary: #faf9f5;
+  --bg-secondary: #f4f3ee;
+  --bg-surface: #ffffff;
+  --bg-pill: #ece9e0;
+  --text-primary: #141413;
+  --text-secondary: #66655f;
+  --text-muted: #94928a;
+  --accent-primary: #d97757;
+  --accent-hover: #c46142;
+  --accent-subtle: #f9ebe5;
+  --accent-ink: #a44a2b;
+  --border-subtle: #e5e2d9;
+  --status-success: #2e6f40;
+  --status-warning: #b86b14;
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --bg-primary: #191918;
+  --bg-secondary: #232220;
+  --bg-surface: #2a2926;
+  --bg-pill: #35332f;
+  --text-primary: #f0efea;
+  --text-secondary: #a6a49b;
+  --text-muted: #75736b;
+  --accent-primary: #e08364;
+  --accent-hover: #c96a4b;
+  --accent-subtle: #3d2922;
+  --accent-ink: #e8957a;
+  --border-subtle: #383632;
+  --status-success: #52a768;
+  --status-warning: #e0963e;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-canvas: var(--bg-primary);
+  --color-sand: var(--bg-secondary);
+  --color-surface: var(--bg-surface);
+  --color-pill: var(--bg-pill);
+  --color-ink: var(--text-primary);
+  --color-ink-2: var(--text-secondary);
+  --color-ink-3: var(--text-muted);
+  --color-accent: var(--accent-primary);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-subtle: var(--accent-subtle);
+  --color-accent-ink: var(--accent-ink);
+  --color-rule: var(--border-subtle);
+  --color-success: var(--status-success);
+  --color-warning: var(--status-warning);
+  --font-serif: var(--font-newsreader), "Tiempos Text", Charter, Georgia, serif;
+  --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: var(--font-jetbrains), "Fira Code", monospace;
+  --ease-claude: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+input[type="range"] {
+  accent-color: var(--accent-primary);
+}
+
+.skeleton {
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--bg-pill) 25%, var(--bg-secondary) 50%, var(--bg-pill) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+.rise {
+  animation: rise 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(6px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
