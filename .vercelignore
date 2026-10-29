@@ -1,0 +1,2 @@
+# Never upload local secrets with `vercel deploy`; they live in the Vercel project's environment variables.
+.env*.local
